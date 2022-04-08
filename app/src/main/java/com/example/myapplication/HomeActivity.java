@@ -15,7 +15,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
 
-        button = findViewById(R.id.mapButton);
+        button = findViewById(R.id.settingsButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
     public void openActivityMap(){
-        Intent intent = new Intent(this, MapActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
