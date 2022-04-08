@@ -1,84 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="200dp"
-        android:layout_height="19dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="106dp" />
+        android:id="@+id/textView"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="198dp"
+        android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView9"
-        android:layout_width="200dp"
-        android:layout_height="19dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="155dp" />
+        android:id="@+id/textView"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="241dp"
+        android:layout_marginEnd="197dp"
+        android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="200dp"
-        android:layout_height="19dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="204dp" />
+        android:id="@+id/textView"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="198dp"
+        android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="200dp"
-        android:layout_height="19dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="256dp" />
+        android:id="@+id/textView"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="200dp"
+        android:text="TextView" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="200dp"
-        android:layout_height="19dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="57dp" />
+        android:id="@+id/textView"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="199dp"
+        android:text="TextView" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="45dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="231dp"
+        android:layout_marginTop="80dp"
+        android:text="Button" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip6"
+        android:id="@+id/chip1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="237dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="253dp"
+        android:layout_marginTop="225dp" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip5"
+        android:id="@+id/chip2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="189dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="253dp"
+        android:layout_marginTop="177dp" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip4"
+        android:id="@+id/chip3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="141dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="253dp"
+        android:layout_marginTop="129dp" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="93dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="32dp"
+        android:text="Button" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

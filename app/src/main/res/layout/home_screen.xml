@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Map"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="129dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="115dp"
+        android:text="Map" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/postsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Posts"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="256dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="224dp"
+        android:text="Posts" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/profileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="393dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="343dp"
+        android:text="Profile" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="538dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="478dp"
+        android:text="Settings" />
+</RelativeLayout>

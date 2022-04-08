@@ -7,34 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity {
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.settings);
 
-        button = findViewById(R.id.goToRegister);
+        button = findViewById(R.id.backHomeButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity2();
-            }
-        });
-        button = findViewById(R.id.loginButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openHomeActivity();
+                openActivityHome();
             }
         });
     }
-    public void openActivity2(){
-        Intent intent = new Intent(this, MainActivity2.class);
-        startActivity(intent);
-    }
-    public void openHomeActivity(){
+    public void openActivityHome(){
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }

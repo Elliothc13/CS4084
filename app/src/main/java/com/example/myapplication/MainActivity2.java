@@ -7,22 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.registration);
 
-        button = findViewById(R.id.goToRegister);
+        button = findViewById(R.id.goToLogin);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openActivity2();
             }
         });
-        button = findViewById(R.id.loginButton);
+        button = findViewById(R.id.registerButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void openActivity2(){
-        Intent intent = new Intent(this, MainActivity2.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
     public void openHomeActivity(){
