@@ -4,15 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/home_screen.xml" value="0.5" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/home_screen.xml" value="0.31875" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/map.xml" value="0.31875" />
-        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/registration.xml" value="0.5" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/registration.xml" value="0.31875" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/settings.xml" value="0.5" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/user_profile.xml" value="0.559375" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/CS4084/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/CS4084/app/src/main/res/layout/home_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/CS4084/app/src/main/res/layout/map.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/CS4084/app/src/main/res/layout/map_activity.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/CS4084/app/src/main/res/layout/registration.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/CS4084/app/src/main/res/layout/settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/CS4084/app/src/main/res/layout/user_profile.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
