@@ -5,18 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/mapButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="115dp"
-        android:text="Map" />
-
-    <Button
+    <!--<Button
         android:id="@+id/postsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,9 +14,9 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="161dp"
         android:layout_marginTop="224dp"
-        android:text="Posts" />
+        android:text="Posts" />-->
 
-    <Button
+    <!--<Button
         android:id="@+id/profileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,9 +25,9 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="156dp"
         android:layout_marginTop="343dp"
-        android:text="Profile" />
+        android:text="Profile" />-->
 
-    <Button
+    <!--<Button
         android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,13 +36,24 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="150dp"
         android:layout_marginTop="478dp"
-        android:text="Settings" />
+        android:text="Settings" />-->
 
     <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container"
-        android:layout_above="@id/bottom_navagation"/>
+        android:layout_above="@id/bottom_navagation" />
+
+    <Button
+        android:id="@+id/mapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="6dp"
+        android:text="Map" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
