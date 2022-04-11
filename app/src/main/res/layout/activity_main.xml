@@ -63,4 +63,6 @@
         android:layout_marginTop="378dp"
         android:text="Go to Register" />
 
+
+
 </RelativeLayout>
