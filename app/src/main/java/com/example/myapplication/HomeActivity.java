@@ -13,9 +13,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
-    private Button  mapButton;
+    private Button  mapButton, uploadButton;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
+    UploadFragment UploadFragment = new UploadFragment();
     SearchFragment searchFragment = new SearchFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
 
@@ -36,23 +37,23 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Button playButton = (Button) findViewById(R.id.mapButton);
+                Button mapButton = (Button) findViewById(R.id.mapButton);
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
-                        playButton.setVisibility(View.VISIBLE);
+                        mapButton.setVisibility(View.VISIBLE);
                         return true;
                     case R.id.nav_upload:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
-                        playButton.setVisibility(View.GONE);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, UploadFragment).commit();
+                        mapButton.setVisibility(View.GONE);
                         return true;
                     case R.id.nav_profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).commit();
-                        playButton.setVisibility(View.GONE);
+                        mapButton.setVisibility(View.GONE);
                         return true;
                     case R.id.nav_settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
-                        playButton.setVisibility(View.GONE);
+                        mapButton.setVisibility(View.GONE);
                         return true;
                 }
                 return false;
@@ -65,8 +66,4 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openActivitySettings(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
 }
