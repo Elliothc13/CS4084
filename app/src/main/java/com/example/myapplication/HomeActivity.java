@@ -16,7 +16,6 @@ public class HomeActivity extends AppCompatActivity {
     private Button  mapButton, uploadButton;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
-    UploadFragment UploadFragment = new UploadFragment();
     SearchFragment searchFragment = new SearchFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
 
@@ -31,6 +30,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { openActivityMap(); }
         });
+        uploadButton = findViewById(R.id.uploadButton);
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openActivityUpload(); }
+        });
 
         bottomNavigationView = findViewById(R.id.bottom_navagation);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
@@ -38,22 +42,22 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Button mapButton = (Button) findViewById(R.id.mapButton);
+                Button uploadButton = (Button) findViewById(R.id.uploadButton);
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         mapButton.setVisibility(View.VISIBLE);
-                        return true;
-                    case R.id.nav_upload:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, UploadFragment).commit();
-                        mapButton.setVisibility(View.GONE);
+                        uploadButton.setVisibility(View.VISIBLE);
                         return true;
                     case R.id.nav_profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).commit();
                         mapButton.setVisibility(View.GONE);
+                        uploadButton.setVisibility(View.GONE);
                         return true;
                     case R.id.nav_settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
                         mapButton.setVisibility(View.GONE);
+                        uploadButton.setVisibility(View.GONE);
                         return true;
                 }
                 return false;
@@ -63,6 +67,10 @@ public class HomeActivity extends AppCompatActivity {
 
     public void openActivityMap() {
         Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
+    public void openActivityUpload() {
+        Intent intent = new Intent(this, UploadActivity.class);
         startActivity(intent);
     }
 
