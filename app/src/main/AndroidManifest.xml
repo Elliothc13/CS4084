@@ -13,6 +13,14 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".TimerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StopwatchAndTimer"
+            android:exported="false"
+            android:label="@string/title_activity_stopwatch_and_timer"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name=".UploadActivity"
             android:exported="false"
             android:label="@string/title_activity_upload"

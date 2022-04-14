@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity {
-    private Button  mapButton, uploadButton;
+    private Button  mapButton, uploadButton, stopwatchButton;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
     SearchFragment searchFragment = new SearchFragment();
@@ -34,6 +34,11 @@ public class HomeActivity extends AppCompatActivity {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { openActivityUpload(); }
+        });
+        stopwatchButton = findViewById(R.id.stopwatchButton);
+        stopwatchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openActivityStopwatch(); }
         });
 
         bottomNavigationView = findViewById(R.id.bottom_navagation);
@@ -71,6 +76,10 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void openActivityUpload() {
         Intent intent = new Intent(this, UploadActivity.class);
+        startActivity(intent);
+    }
+    public void openActivityStopwatch() {
+        Intent intent = new Intent(this, StopwatchAndTimer.class);
         startActivity(intent);
     }
 
