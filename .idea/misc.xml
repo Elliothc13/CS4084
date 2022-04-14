@@ -4,13 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_stopwatch_and_timer.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_upload.xml" value="0.45416666666666666" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_upload2.xml" value="0.33" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/content_stopwatch_and_timer.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/content_upload.xml" value="0.4427083333333333" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_first.xml" value="0.4427083333333333" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_first2.xml" value="0.4265625" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_first3.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_home.xml" value="0.559375" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_search.xml" value="0.559375" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_second.xml" value="0.4427083333333333" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_second2.xml" value="0.4161458333333333" />
+        <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_second3.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_settings.xml" value="0.559375" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_upload.xml" value="0.45416666666666666" />
         <entry key="..\:/Users/Elliot Cleary/AndroidStudioProjects/MyApplication/app/src/main/res/layout/home_screen.xml" value="0.5" />
