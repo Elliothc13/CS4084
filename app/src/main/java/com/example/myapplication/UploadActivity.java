@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class UploadActivity extends AppCompatActivity {
@@ -63,6 +67,10 @@ public class UploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 uploadFile();
+                AsyncTaskRunner runner = new AsyncTaskRunner();
+                // Create the AsyncTask Runner WITHIN MainActivity
+                String sleepTime = "2";
+                runner.execute(sleepTime);
             }
         });
         textViewShowUploads.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +134,11 @@ public class UploadActivity extends AppCompatActivity {
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            try {
+                                TimeUnit.SECONDS.sleep(1);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             progressBar.setProgress(100);
                         }
                     });
@@ -136,7 +149,42 @@ public class UploadActivity extends AppCompatActivity {
 
 
 
+    private class AsyncTaskRunner extends AsyncTask<String, String, String> {
+        private String resp;
+        ProgressDialog progressDialog;
 
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(UploadActivity.this, "ProgressDialog",
+                    "Please Wait");
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            // This method sends updated text to the UI thread
+            // using onProgressUpdate
+            publishProgress("Sleeping..."); // Calls onProgressUpdate
+            try {
+                int time = Integer.parseInt(params[0]) * 1000;
+                Thread.sleep(time);
+                resp = "Slept for " + params[0] + " seconds";
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            } catch (Exception e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            }
+            return resp; // passed to main UI thread, string updated
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // Gives us the result of the Runner
+            progressDialog.dismiss();
+        }
+
+    }
 
 
 
