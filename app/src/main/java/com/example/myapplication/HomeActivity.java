@@ -48,21 +48,25 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Button mapButton = (Button) findViewById(R.id.mapButton);
                 Button uploadButton = (Button) findViewById(R.id.uploadButton);
+                Button stopwatchButton = (Button) findViewById(R.id.stopwatchButton);
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         mapButton.setVisibility(View.VISIBLE);
                         uploadButton.setVisibility(View.VISIBLE);
+                        stopwatchButton.setVisibility(View.VISIBLE);
                         return true;
                     case R.id.nav_profile:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).commit();
                         mapButton.setVisibility(View.GONE);
                         uploadButton.setVisibility(View.GONE);
+                        stopwatchButton.setVisibility(View.GONE);
                         return true;
                     case R.id.nav_settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
                         mapButton.setVisibility(View.GONE);
                         uploadButton.setVisibility(View.GONE);
+                        stopwatchButton.setVisibility(View.GONE);
                         return true;
                 }
                 return false;

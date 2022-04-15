@@ -16,7 +16,7 @@ import java.util.Locale;
 public class TimerActivity extends AppCompatActivity {
     private EditText editTextInput;
     private TextView textViewCountDown;
-    private Button startButton, pauseButton, resetButton, setButton, stopwatchButton;
+    private Button startButton, pauseButton, resetButton, setButton, stopwatchButton, timerHome;
     private CountDownTimer countDownTimer;
     private boolean running;
     private long startTimeInMillis;
@@ -78,12 +78,21 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { openActivityStopwatch(); }
         });
+        timerHome = findViewById(R.id.timerHome);
+        timerHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openActivityHome(); }
+        });
 
         updateCountdownText();
     }
 
     public void openActivityStopwatch() {
         Intent intent = new Intent(this, StopwatchAndTimer.class);
+        startActivity(intent);
+    }
+    public void openActivityHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 

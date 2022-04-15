@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 
 public class StopwatchAndTimer extends AppCompatActivity {
-    private Button startButton, pauseButton, resetButton, timerButton;
+    private Button startButton, pauseButton, resetButton, timerButton, stopwatchHome;
     private Chronometer chronometer;
     private long pauseOffset;
     private boolean running;
@@ -56,10 +56,19 @@ public class StopwatchAndTimer extends AppCompatActivity {
             @Override
             public void onClick(View view) { openActivityTimer(); }
         });
+        stopwatchHome = findViewById(R.id.stopwatchHome);
+        stopwatchHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openActivityHome(); }
+        });
     }
 
     public void openActivityTimer() {
         Intent intent = new Intent(this, TimerActivity.class);
+        startActivity(intent);
+    }
+    public void openActivityHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

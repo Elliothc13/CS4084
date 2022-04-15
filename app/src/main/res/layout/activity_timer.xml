@@ -54,4 +54,10 @@
         android:layout_height="wrap_content"
         android:text="Go To Stopwatch" />
 
+    <Button
+        android:id="@+id/timerHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home" />
+
 </LinearLayout>
