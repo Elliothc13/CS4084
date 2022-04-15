@@ -28,9 +28,6 @@
         <activity
             android:name=".AuthActivity"
             android:exported="false" />
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
