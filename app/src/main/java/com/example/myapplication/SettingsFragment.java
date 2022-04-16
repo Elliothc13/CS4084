@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
 
 public class SettingsFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -23,9 +26,10 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
         ArrayList<Item> exampleList = new ArrayList<>();
-        exampleList.add(new Item(R.drawable.ic_baseline_account_circle_24, "Line1", "Line2"));
-        exampleList.add(new Item(R.drawable.ic_baseline_account_circle_24, "Line3", "Line4"));
-        exampleList.add(new Item(R.drawable.ic_baseline_account_circle_24, "Line5", "Line6"));
+        exampleList.add(new Item(R.drawable.ic_baseline_account_circle_24, "Line1", "Unfollowed", ""));
+        exampleList.add(new Item(R.drawable.ic_baseline_account_circle_24, "Line3", "Unfollowed", ""));
+        exampleList.add(new Item(R.drawable.ic_baseline_account_circle_24, "Line5", "Unfollowed", ""));
+
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -34,6 +38,28 @@ public class SettingsFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                if (!exampleList.get(position).getText2().equals("Followed")){
+                    exampleList.get(position).changeText2("Followed");
+                }else{
+                    exampleList.get(position).changeText2("Unfollowed");
+                }
+                mAdapter.notifyItemChanged(position);
+            }
+
+            @Override
+            public void onFollowClick(int position) {
+                if (exampleList.get(position).getText3().equals("")){
+                    exampleList.get(position).changeText3("Followed");
+                }else{
+                    exampleList.get(position).changeText3("");
+                }
+                mAdapter.notifyItemChanged(position);
+            }
+        });
 
         // Inflate the layout for this fragment
         return rootView;
