@@ -16,7 +16,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button  mapButton, uploadButton, stopwatchButton;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
-    SearchFragment searchFragment = new SearchFragment();
+    ProfileFragment profileFragment = new ProfileFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
 
     @Override
@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
                         stopwatchButton.setVisibility(View.VISIBLE);
                         return true;
                     case R.id.nav_profile:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, searchFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
                         mapButton.setVisibility(View.GONE);
                         uploadButton.setVisibility(View.GONE);
                         stopwatchButton.setVisibility(View.GONE);

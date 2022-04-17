@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ProfileFragment">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="162dp"
+                android:layout_height="153dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/editUserName"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="13dp"
+                android:autofillHints=""
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:text="Name"
+                android:textSize="20dp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/email"
+                android:layout_centerHorizontal="true"
+                android:autofillHints=""
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:text="Email"
+                android:textSize="20dp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editBusinessName"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/addBusinessBt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:hint="Business name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:text="Business name"
+                android:textSize="20dp"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editBusinessName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:entries="@array/businessTypes"
+                android:spinnerMode="dropdown"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="248dp"
+                android:layout_height="48dp"
+                android:layout_below="@+id/imageView"
+                android:layout_alignTop="@id/editUserName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="14dp"
+                android:autofillHints=""
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:text="Name"
+                android:textSize="20sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="21dp"
+                android:minHeight="48dp"
+                android:text="Email"
+                android:textSize="20dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/businessTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Business Details"
+                android:textSize="34sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/businessName"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/businessTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:minHeight="48dp"
+                android:text="Business name"
+                android:textSize="20dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/businessType"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/businessName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:minHeight="48dp"
+                android:text="Business type"
+                android:textSize="20dp"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/confirmBt"
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/setLocationBt"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="85dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="57dp"
+                android:layout_toEndOf="@+id/cancelBt"
+                android:backgroundTint="@android:color/holo_green_light"
+                android:text="Confirm"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/cancelBt"
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/setLocationBt"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:text="Cancel"
+                android:visibility="visible" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/workoutsTitle"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:src="@android:drawable/stat_notify_more"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/workoutsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cancelBt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="My Workouts"
+                android:textSize="34sp"
+                android:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/userName"
+                android:layout_alignParentBottom="false"
+                android:layout_marginStart="17dp"
+                android:layout_toEndOf="@+id/userName"
+                android:baselineAlignBottom="false"
+                android:src="@android:drawable/ic_menu_edit" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/workoutsRecView"
+                android:layout_width="299dp"
+                android:layout_height="180dp"
+                android:layout_below="@+id/floatingActionButton2"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/floatingActionButton2" />
+
+            <Button
+                android:id="@+id/setLocationBt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/businessType"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="View/change business location"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/addBusinessBt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/businessTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Add your business"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+</ScrollView>
