@@ -7,13 +7,14 @@ import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.List;
 import java.util.Map;
 
 public class AppUser {
     private static String name, idToken, email, businessName, businessType;
     private static boolean businessOwner;
     private static Map<String, Object> userDetails, businessDetails;
-
+    private static List<Map<String, Object>> posts;
 
     AppUser() {
 
@@ -68,4 +69,13 @@ public class AppUser {
     public boolean hasBusiness() { return businessOwner; }
 
     public void setHasBusiness(boolean b) { businessOwner = b; }
+    public void refreshPosts() {
+        DbManager.getPostsForGenericFeed(new CallbackForList<Map<String, Object>>() {
+            @Override
+            public void onCallback(List<Map<String, Object>> s) {
+                posts = s;
+                System.out.println("===== Posts refreshed, current size: " + s.size());
+            }
+        });
+    }
 }

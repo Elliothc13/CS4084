@@ -125,7 +125,7 @@ public class DbManager {
                             int maxUpvotes = -1, minUpvotes = Integer.MAX_VALUE;
                             for (QueryDocumentSnapshot doc : task.getResult()) {
                                 Map<String, Object> docMap = doc.getData();
-                                int upvotes = (int) docMap.get("upvotes");
+                                int upvotes = (int) (long) docMap.get("upvotes");
                                 if (upvotes > maxUpvotes) {
                                     maxUpvotes = upvotes;
                                     postList.add(0, docMap);
@@ -134,7 +134,7 @@ public class DbManager {
                                     postList.add(docMap);
                                 } else {
                                     for (int i = 0; i < postList.size(); i++) {
-                                        if ((int) postList.get(i).get("upvotes") > upvotes) {
+                                        if (((int) (long) postList.get(i).get("upvotes")) > upvotes) {
                                             postList.add(i, docMap);
                                             break;
                                         }
