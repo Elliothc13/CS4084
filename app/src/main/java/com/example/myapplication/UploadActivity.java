@@ -45,7 +45,7 @@ public class UploadActivity extends AppCompatActivity {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private Uri imageUri;
 
-    private StorageReference storageRef = FirebaseStorage.getInstance().getReference("uploads/" + user.getUid() +"/pics" );
+    private StorageReference storageRef = FirebaseStorage.getInstance().getReference("uploads/" + user.getUid() +"/pics/posts" );
 
 
     @Override

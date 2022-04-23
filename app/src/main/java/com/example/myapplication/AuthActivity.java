@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -33,7 +34,7 @@ import java.util.Map;
 
 public class AuthActivity extends AppCompatActivity {
     public static final String CLASS_NAME = AuthActivity.class.getSimpleName();
-    private FirebaseUser currentUser = null;
+    private FirebaseUser currentUser;
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
@@ -55,12 +56,12 @@ public class AuthActivity extends AppCompatActivity {
                 final FirebaseFirestore database = FirebaseFirestore.getInstance();
                 final String idToken = currentUser.getUid();
                 final String userName = currentUser.getDisplayName();
-                createProfile(userName, idToken, database, new CallbackForBool() {
+                DbManager.createProfile(userName, idToken, database, new CallbackForBool() {
                     @Override
                     public void onCallback(boolean s) {
                         if (s) {
                             Log.i("INFO", "===== Profile creation ok");
-                            createEntry(userName, idToken, database, new CallbackForBool() {
+                            DbManager.createEntry(userName, idToken, database, new CallbackForBool() {
                                 @Override
                                 public void onCallback(boolean b) {
                                     if (b) {
@@ -115,45 +116,11 @@ public class AuthActivity extends AppCompatActivity {
 
     public void openHomeActivity(){
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("idToken", currentUser.getUid());
+        final String uid = currentUser.getUid();
+        intent.putExtra("idToken", uid);
+        getApplicationContext().getSharedPreferences("userData", MODE_PRIVATE).edit()
+                .putBoolean("loggedIn", true).putString("idToken", uid);
         Log.i("INFO", "===== Starting home activity");
         startActivity(intent);
-    }
-
-    public static void createProfile(String userName, String idToken, FirebaseFirestore database,
-                                     CallbackForBool cb) {
-        final List<String> defaultEmpty = new ArrayList<>();
-        Map<String, Object> profileDefaults = new HashMap<>();
-        profileDefaults.put("name", userName);
-        profileDefaults.put("businessOwner", false);
-        profileDefaults.put("posts", defaultEmpty);
-        profileDefaults.put("routines", defaultEmpty);
-        database.collection("users").document(idToken)
-                .set(profileDefaults, SetOptions.merge())
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        boolean comp = task.isComplete();
-                        boolean success = task.isSuccessful();
-                        cb.onCallback(comp && success);
-                    }
-                });
-    }
-
-    public static void createEntry(String userName, String idToken, FirebaseFirestore database,
-                                   CallbackForBool cb) {
-        Map<String, Object> searchEntry = new HashMap<>();
-        searchEntry.put("name", userName);
-        searchEntry.put("id", idToken);
-        database.collection("usersearch").document("allusers")
-                .update("allusers", FieldValue.arrayUnion(searchEntry))
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        boolean comp = task.isComplete();
-                        boolean success = task.isSuccessful();
-                        cb.onCallback(comp && success);
-                    }
-                });
     }
 }

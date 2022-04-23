@@ -14,7 +14,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.WriteBatch;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +24,44 @@ import java.util.Map;
 public class DbManager {
     private static final FirebaseFirestore database = FirebaseFirestore.getInstance();
     private static final List<String> defaultEmpty = new ArrayList<>();
+
+    public static void createProfile(String userName, String idToken, FirebaseFirestore database,
+                                     CallbackForBool cb) {
+        final List<String> defaultEmpty = new ArrayList<>();
+        Map<String, Object> profileDefaults = new HashMap<>();
+        profileDefaults.put("name", userName);
+        profileDefaults.put("businessOwner", false);
+        profileDefaults.put("posts", defaultEmpty);
+        profileDefaults.put("following", defaultEmpty);
+        profileDefaults.put("routines", defaultEmpty);
+        database.collection("users").document(idToken)
+                .set(profileDefaults, SetOptions.merge())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        boolean comp = task.isComplete();
+                        boolean success = task.isSuccessful();
+                        cb.onCallback(comp && success);
+                    }
+                });
+    }
+
+    public static void createEntry(String userName, String idToken, FirebaseFirestore database,
+                                   CallbackForBool cb) {
+        Map<String, Object> searchEntry = new HashMap<>();
+        searchEntry.put("name", userName);
+        searchEntry.put("id", idToken);
+        database.collection("usersearch").document("allusers")
+                .update("allusers", FieldValue.arrayUnion(searchEntry))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        boolean comp = task.isComplete();
+                        boolean success = task.isSuccessful();
+                        cb.onCallback(comp && success);
+                    }
+                });
+    }
 
     public static void uploadPost(String idToken, String content, Routine workout, String picturePath,
                            String videoPath) {
@@ -58,12 +96,15 @@ public class DbManager {
     }
 
     public static void getProfileDetails(String profileId, CallbackForMap cb) {
-        database.collection("users").document(profileId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        database.collection("users").document(profileId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     Log.i("INFO", "===== Details fetched for user " + profileId);
-                    cb.onCallback(task.getResult().getData());
+                    Map<String, Object> mp = task.getResult().getData();
+                    Log.i("INFO", mp.toString());
+                    cb.onCallback(mp);
                 } else {
                     Log.e("ERROR", "===== Profile details for user " + profileId + " failed: " + task.getException().getMessage());
                 }
@@ -134,7 +175,7 @@ public class DbManager {
             }
         });
     }
-    public static void followPeople(String idToken, ArrayList<String> people) {
+    public static void followPeople(String idToken, List<String> people) {
         database.collection("users").document(idToken).update("following", FieldValue.arrayUnion(people))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -144,7 +185,7 @@ public class DbManager {
                 });
     }
 
-    public static void unfollowPeople(String idToken, ArrayList<String> people) {
+    public static void unfollowPeople(String idToken, List<String> people) {
         database.collection("users").document(idToken).update("following", FieldValue.arrayRemove(people))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -154,19 +195,81 @@ public class DbManager {
                 });
     }
 
+    public static void getAllBusinesses(CallbackForList cb) {
+        database.collection("businesses").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<Map<String, Object>> listOfBusinesses = new ArrayList<>();
+                    for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                        listOfBusinesses.add(doc.getData());
+                    }
+                    if (listOfBusinesses.size() == 0) {
+                        Log.e("ERROR", "===== No businesses found!");
+                    } else {
+                        Log.i("INFO", "===== All businesses list retrieved");
+                    }
+                    cb.onCallback(listOfBusinesses);
+                } else {
+                    Log.e("ERROR", "===== Follower retrieval failed: " +
+                            task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    public static void getOwnersBusiness(String ownerId, CallbackForMap cb) {
+        database.collection("businesses").whereEqualTo("owner", ownerId).limit(1)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    Map<String, Object> businessMap = new HashMap<>();
+                    for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                        businessMap = doc.getData();
+                        break;
+                    }
+                    if (businessMap.size() == 0) {
+                        Log.e("ERROR", "===== Business owned by user " + ownerId + " not found!");
+                    } else {
+                        Log.i("INFO", "===== Business owned by user " + ownerId + " retrieved");
+                    }
+                    cb.onCallback(businessMap);
+                } else {
+                    Log.e("ERROR", "===== Businesses retrieval failed: " +
+                            task.getException().getMessage());
+                }
+            }
+        });
+    }
+
     // Use if data fields are missing in the documents in the database
-    private void addMissingFieldsForDocs(String collectionName, String field) {
-//        database.collection(collectionName).get()
-//                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentReference> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentReference docRef = task.getResult();
-//                    if (docRef.get(field) == null) {
-//                        docRef.update(field, defaultEmpty);
-//                    }
-//                }
-//            }
-//        });
+    // Adjust and set default value manually
+    private static void addMissingFieldsForDocs(String collectionName, String field) {
+        database.collection(collectionName).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot doc : task.getResult()) {
+                        if (doc.get(field) == null) {
+                            doc.getReference().update(field, defaultEmpty).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task2) {
+                                    if(task2.isSuccessful()) {
+                                        Log.i("INFO", "===== Field " + field + " updated");
+                                    } else {
+                                        Log.e("ERROR", "===== Field" + field + " update failed: " +
+                                                task.getException().getMessage());
+                                    }
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    Log.e("ERROR", "===== " + collectionName + " retrieval failed: " +
+                            task.getException().getMessage());
+                }
+            }
+        });
     }
 }
