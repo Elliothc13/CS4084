@@ -65,7 +65,7 @@ public class SettingsFragment extends Fragment {
         return rootView;
     }
 
-    //THIS DOESNT FUCKING WORK AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    //THIS DOESNT WORK AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
