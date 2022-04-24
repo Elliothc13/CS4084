@@ -22,7 +22,6 @@ import java.util.Arrays;
 import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private Button button;
-    public static SharedPreferences sharedPref;
 
 //    @Override
 //    protected void onStart() {
@@ -33,20 +32,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sharedPref = getApplicationContext().getSharedPreferences("userData", MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("fitnessBuddyUser", MODE_PRIVATE);
         if (! sharedPref.getBoolean("loggedIn", false)) {
-            // if user not logged in
+            Log.i("INFO", "===== user not logged in");
+
             setContentView(R.layout.activity_main);
         } else {
             Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra("idToken", sharedPref.getString("idToken", null));
-            Log.i("INFO", "===== Starting home activity");
+            Log.i("INFO", "===== Starting auth activity");
             startActivity(intent);
         }
     }
 
     public void launchAuthentication(View view) {
-        Intent intent = new Intent(this, AuthActivity.class);
+        Intent intent;
+        SharedPreferences sharedPref = this.getSharedPreferences("fitnessBuddyUser", MODE_PRIVATE);
+        if (sharedPref.getBoolean("loggedIn", false)) {
+            // check if not signed out
+            // launch home
+            intent = new Intent(this, HomeActivity.class);
+            String uid = sharedPref.getString("idToken", "");
+            intent.putExtra("idToken", uid);
+        } else {
+            intent = new Intent(this, AuthActivity.class);
+        }
         startActivity(intent);
     }
 

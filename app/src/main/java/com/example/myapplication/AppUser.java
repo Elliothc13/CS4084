@@ -52,7 +52,8 @@ public class AppUser {
             }
         });
         Log.i("INFO", "===== Reached 10 ");
-
+        refreshPosts();
+        Log.i("INFO", "===== Reached 11 ");
 
 
 //        } catch (Exception ex) {

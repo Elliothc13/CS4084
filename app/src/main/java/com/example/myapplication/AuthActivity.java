@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static android.content.SharedPreferences.*;
+
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
@@ -7,7 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.wifi.hotspot2.pps.Credential;
+import android.content.SharedPreferences;
+// import android.net.wifi.hotspot2.pps.Credential;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -116,11 +119,16 @@ public class AuthActivity extends AppCompatActivity {
 
     public void openHomeActivity(){
         Intent intent = new Intent(this, HomeActivity.class);
-        final String uid = currentUser.getUid();
+        String uid = currentUser.getUid();
         intent.putExtra("idToken", uid);
-        getApplicationContext().getSharedPreferences("userData", MODE_PRIVATE).edit()
-                .putBoolean("loggedIn", true).putString("idToken", uid);
-        Log.i("INFO", "===== Starting home activity");
+        System.out.println("===== access prefs");
+        SharedPreferences prefs = this.getSharedPreferences("fitnessBuddyUser", MODE_PRIVATE);
+        SharedPreferences.Editor editPrefs = prefs.edit();
+        editPrefs.putBoolean("loggedIn", true);
+        editPrefs.putString("idToken", uid);
+        Log.i("INFO", "===== Edited prefs");
+        editPrefs.commit();
+        Log.i("INFO", "===== Prefs edits committed, starting home activity");
         startActivity(intent);
     }
 }
