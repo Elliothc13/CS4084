@@ -19,11 +19,11 @@ public class HomeActivity extends AppCompatActivity {
     ProfileFragment profileFragment = new ProfileFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
-
 
         mapButton = findViewById(R.id.mapButton);
         mapButton.setOnClickListener(new View.OnClickListener() {

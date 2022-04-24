@@ -43,33 +43,36 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        AppUser user = new AppUser();
-
-        StorageReference profilePic = FirebaseStorage.getInstance().getReference("uploads/" + user.getIdToken() +"/pics/profile.jpg");
-        final long TWELVE_MB = 1024*1024*12;
-
+        AppUser user = AppUser.getInstance();
+        byte[] image = user.getCurrentImage();
         ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
-
-
-        CallbackForBytes cb = new CallbackForBytes() {
-            @Override
-            public void onCallback(byte[] s) {
-                imageView.setImageBitmap(BitmapFactory.decodeByteArray(s,0, s.length));
-            }
-        };
-
-        profilePic.getBytes(TWELVE_MB)
-                .addOnCompleteListener(new OnCompleteListener<byte[]>() {
-                    @Override
-                    public void onComplete(@NonNull Task<byte[]> task) {
-                        if (task.isSuccessful()) {
-                            Log.i("INFO", "===== Image downloaded successfully");
-                            cb.onCallback(task.getResult());
-                        } else {
-                            Log.e("ERROR", "===== Image not downloaded, error: " + task.getException().getMessage());
-                        }
-                    }
-                });
+        imageView.setImageBitmap(BitmapFactory.decodeByteArray(image,0, image.length));
+//        StorageReference profilePic = FirebaseStorage.getInstance().getReference("uploads/"
+//                + user.getIdToken() +"/pics/profile.jpg");
+//        final long TWELVE_MB = 1024*1024*12;
+//
+//        ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
+//
+//
+//        CallbackForBytes cb = new CallbackForBytes() {
+//            @Override
+//            public void onCallback(byte[] s) {
+//                imageView.setImageBitmap(BitmapFactory.decodeByteArray(s,0, s.length));
+//            }
+//        };
+//
+//        profilePic.getBytes(TWELVE_MB)
+//                .addOnCompleteListener(new OnCompleteListener<byte[]>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<byte[]> task) {
+//                        if (task.isSuccessful()) {
+//                            Log.i("INFO", "===== Image downloaded successfully");
+//                            cb.onCallback(task.getResult());
+//                        } else {
+//                            Log.e("ERROR", "===== Image not downloaded, error: " + task.getException().getMessage());
+//                        }
+//                    }
+//                });
 
         TextView userName = (TextView) v.findViewById(R.id.userName);
         EditText editUserName = (EditText) v.findViewById(R.id.editUserName);

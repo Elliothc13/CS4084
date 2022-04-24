@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +25,7 @@ import java.util.Map;
 
 public class DbManager {
     private static final FirebaseFirestore database = FirebaseFirestore.getInstance();
+    private static final FirebaseStorage storage = FirebaseStorage.getInstance();
     private static final List<String> defaultEmpty = new ArrayList<>();
 
     public static void createProfile(String userName, String idToken, FirebaseFirestore database,
@@ -71,12 +74,12 @@ public class DbManager {
             post.put("workout", content);
         }
         if (picturePath != null) {
-            post.put("picturePath", picturePath);
+            post.put("imagePath", picturePath);
         }
         if (videoPath != null) {
             post.put("videoPath", videoPath);
         }
-        post.put("creator", "/users/" + idToken);
+        post.put("creator", "users/" + idToken);
         post.put("timePosted", FieldValue.serverTimestamp());
         post.put("upvotes", 0);
 
@@ -124,7 +127,8 @@ public class DbManager {
                             List<Map<String, Object>> postList = new ArrayList<>();
                             int maxUpvotes = -1, minUpvotes = Integer.MAX_VALUE;
                             for (QueryDocumentSnapshot doc : task.getResult()) {
-                                Map<String, Object> docMap = doc.getData();
+                                Map<String, Object> docMap = (Map<String, Object>) doc.getData();
+                                docMap.put("_docId", doc.getId());
                                 int upvotes = (int) (long) docMap.get("upvotes");
                                 if (upvotes > maxUpvotes) {
                                     maxUpvotes = upvotes;
@@ -271,5 +275,57 @@ public class DbManager {
                 }
             }
         });
+    }
+    public static void getReferencedImage(String reference, CallbackForBytes cb) {
+        StorageReference storeRef = storage.getReference(reference);
+        final long TWELVE_MB = 1024*1024*12;
+        storeRef.getBytes(TWELVE_MB).addOnCompleteListener(new OnCompleteListener<byte[]>() {
+            @Override
+            public void onComplete(@NonNull Task<byte[]> task) {
+                if (task.isSuccessful()) {
+                    byte[] imageArray = task.getResult();
+                    if (imageArray != null) {
+                        cb.onCallback(imageArray);
+                    } else {
+                        Log.e("ERROR", "===== Image for " + reference + " not found");
+                    }
+                } else {
+                    Log.e("ERROR", "===== Image retrieval failed for " + reference
+                                    + " : " + task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    public static void upvotePost(String postId, boolean unvote) {
+        long x = (unvote) ? -1 : 1;
+        database.collection("posts").document(postId).update("upvotes", FieldValue.increment(x)).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.i("INFO", "===== Upvote increment of " + x + " successful");
+                } else {
+                    Log.e("ERROR", "===== Upvote increment of " + x + " failed");
+                }
+            }
+        });
+    }
+
+    public static void editSingleField(String collectionName, String documentName, String fieldName, Object updatedValue) {
+        database.collection(collectionName).document(documentName).update(fieldName, updatedValue)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.i("INFO", "===== Field " + fieldName + " updated to "
+                                    + (String) (updatedValue) + " in doc " +documentName + " in "
+                                    + collectionName );
+                        } else {
+                            Log.e("ERROR", "===== Field " + fieldName + " NOT updated to "
+                                    + (String) (updatedValue) + " in doc " +documentName + " in "
+                                    + collectionName );
+                        }
+                    }
+                });
     }
 }

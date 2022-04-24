@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra("idToken", sharedPref.getString("idToken", null));
-            Log.i("INFO", "===== Starting auth activity");
+            Log.i("INFO", "===== Starting home activity from main");
             startActivity(intent);
         }
     }
